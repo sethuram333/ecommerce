@@ -11,7 +11,7 @@ const ProductDetails = () => {
 
   const{addToCart,cart}= useCartContext()
 
-  console.log(data);
+
   
 
   if (isLoading) {

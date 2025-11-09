@@ -11,14 +11,16 @@ const CartProvider = ({ children }) => {
   // create or add items
   const addToCart = (product) => {
     setCart((prev) => {
+
       //check if products is already in the cart
-      const isProduct = prev.find((items) => items.id === product.id);
+      const isProduct = prev.find((item) => item.id === product.id);
+      
       //if the cart is there add quantity
       if (isProduct) {
-        return prev.map((items) => {
-          items.id === product.id
-            ? { ...items, quantity: items.quantity + 1 }
-            : items;
+        return prev.map((item) => {
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item;
         });
 
          // product is not in the cart
@@ -35,14 +37,14 @@ const CartProvider = ({ children }) => {
 
   //remove items
   const removeItemsFromCart = (id) => {
-    setCart((prev) => prev.filter((items) => items.id !== id));
+    setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   // update items
   const updateCartItemsQuantity = (id, quantity) => {
     setCart((prev) => {
-      return prev.map((items) =>
-        items.id === id ? { ...items, quantity } : items
+      return prev.map((item) =>
+        item.id === id ? { ...item, quantity } : item
       );
     });
   };

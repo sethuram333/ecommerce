@@ -12,7 +12,7 @@ const ProductContainer = (props) => {
             <img className="mx-auto h-full dark:hidden" src={image} alt="" />
             <img
               className="mx-auto hidden h-full dark:block"
-              src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+              src={image} 
               alt=""
             />
           </a>

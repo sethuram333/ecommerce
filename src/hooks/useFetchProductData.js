@@ -12,7 +12,7 @@ const useFetchProductData = () => {
     try {
       const res = await fetch("https://fakestoreapi.com/products");
       const data = await res.json();
-      console.log(data);
+      console.log("product-data",data);
 
       setData(data);
     } catch (error) {

@@ -6,6 +6,9 @@ const Product = () => {
 
 const {isLoading,data} = useFetchProductData()
 
+
+
+
   if(isLoading){
 
     return (
