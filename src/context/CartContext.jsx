@@ -1,63 +1,46 @@
 import { createContext, useState } from "react";
 
-//step 1
 export const CartContext = createContext();
 
-//step 2
-
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
-  // create or add items
+  //add to cart
   const addToCart = (product) => {
-    setCart((prev) => {
-
-      //check if products is already in the cart
-      const isProduct = prev.find((item) => item.id === product.id);
-      
-      //if the cart is there add quantity
-      if (isProduct) {
-        return prev.map((item) => {
+    setCartItems((prevItems) => {
+      const existItem = prevItems.find((item) => item.id === product.id);
+      if (existItem) {
+        return prevItems.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
-            : item;
-        });
-
-         // product is not in the cart
-      } else {
-        return [...prev, { ...product, quantity: 1 }];
+            : item
+        );
       }
+      return [...prevItems, { ...product, quantity: 1 }];
     });
   };
 
-  //view items
-  const getCartItems = () => {
-    return cart;
+  //remove from cart
+  const removeFromCart = (productId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== productId)
+    );
   };
-
-  //remove items
-  const removeItemsFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  //update quantity
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+    }
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
   };
-
-  // update items
-  const updateCartItemsQuantity = (id, quantity) => {
-    setCart((prev) => {
-      return prev.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      );
-    });
-  };
-
+ 
   return (
     <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        getCartItems,
-        removeItemsFromCart,
-        updateCartItemsQuantity,
-      }}
+      value={{ cartItems, addToCart, removeFromCart, updateQuantity}}
     >
       {children}
     </CartContext.Provider>

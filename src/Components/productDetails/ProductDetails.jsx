@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetchProductDetails from "../../hooks/useFetchProductDetails";
 import useCartContext from "../../hooks/useCartContext";
-
 
 const ProductDetails = () => {
   const { id } = useParams();
 
   const { isLoading, data } = useFetchProductDetails(id);
 
-  const{addToCart,cart}= useCartContext()
-
-
-  
+ const {addToCart}= useCartContext()
 
   if (isLoading) {
     return (
@@ -134,8 +129,7 @@ const ProductDetails = () => {
                   Add to favorites
                 </button>
 
-                <button className="text-white mt-4 sm:mt-0 bg-blue-500 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center" 
-                onClick={()=>addToCart(data)}>
+                <button className="text-white mt-4 sm:mt-0 bg-blue-500 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center" onClick={()=>addToCart(data)}>
                   <svg
                     className="w-5 h-5 -ms-2 me-2"
                     aria-hidden="true"
@@ -155,7 +149,6 @@ const ProductDetails = () => {
                   </svg>
                   Add to cart
                 </button>
-
               </div>
               <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
               <p className="mb-5 text-xl font-semibold">{data.category}</p>

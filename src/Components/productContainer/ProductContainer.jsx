@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const ProductContainer = (props) => {
+  const { id, title, price, category, description, image, rating } = props.data;
 
-  const { id,title, price, category, description, image, rating } = props.data;
-  
   return (
     <>
       <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -12,7 +11,7 @@ const ProductContainer = (props) => {
             <img className="mx-auto h-full dark:hidden" src={image} alt="" />
             <img
               className="mx-auto hidden h-full dark:block"
-              src={image} 
+              src={image}
               alt=""
             />
           </a>
@@ -201,7 +200,6 @@ const ProductContainer = (props) => {
             </p>
 
             <Link to={`/product-details/${id}`}>
-              
               <button
                 type="button"
                 className=" rounded-lg bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 "

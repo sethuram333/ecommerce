@@ -1,13 +1,8 @@
 
-import useCartContext from "../../hooks/useCartContext";
-
 
 const Footer = () => {
 
-  // const data = useContext(CartContext)
-
-  const data =useCartContext()
-
+ 
 
   
   return (

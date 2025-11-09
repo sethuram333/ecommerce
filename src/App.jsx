@@ -5,7 +5,10 @@ import Product from './Components/Product/Product'
 import Home from './pages/Home/Home'
 import NotFound from './Components/NotFound/NotFound'
 import ProductDetails from './Components/productDetails/ProductDetails'
-import ShoppingCart from './Components/Cart/ShoppingCart'
+import ShoppingCart from './Components/shoppingcart/ShoppingCart'
+
+
+
 
 
 
@@ -31,8 +34,14 @@ const App = () => {
 
         } ,
         {
-          path:'shopping-cart',
-          element:<ShoppingCart/>
+          path:'shoppingcart',
+          element:<ShoppingCart/>,
+           children: [
+            {
+              path: 'products', // This creates /shoppingcart/products
+              element: <Product /> // or create a different component if needed
+            }
+          ]
         }
       ],
       errorElement:<NotFound/>
