@@ -37,10 +37,42 @@ const CartProvider = ({ children }) => {
       )
     );
   };
- 
+
+  //item total price
+ const itemPrice = (item)=>{
+  return item.price * item.quantity
+ }
+
+  // calculate total count
+  const totalCountCartItems = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  // calculate total cart price
+  const totalPrice = () => {
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
+
+  // clear cart
+  const clearCart=()=>{
+    setCartItems([])
+  }
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity}}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        itemPrice,
+        totalCountCartItems,
+        totalPrice,
+        clearCart
+      }}
     >
       {children}
     </CartContext.Provider>

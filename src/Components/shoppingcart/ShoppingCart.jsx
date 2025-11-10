@@ -1,7 +1,9 @@
 import useCartContext from "../../hooks/useCartContext";
 import { Link } from "react-router-dom";
+import { IoTrashBinSharp } from "react-icons/io5";
 const ShoppingCart = () => {
-  const { cartItems, removeFromCart, updateQuantity } = useCartContext();
+  const { cartItems, removeFromCart, updateQuantity, itemPrice, totalPrice,clearCart } =
+    useCartContext();
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
@@ -10,10 +12,11 @@ const ShoppingCart = () => {
           {/* Shopping Cart Items - Takes 2/3 on large screens */}
           <div className="lg:col-span-2">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+              <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                   Shopping Cart
                 </h2>
+                <button className="bg-red-500 px-2 py-1 text-2xl rounded-full w-10 h-10  flex justify-center items-center hover:bg-red-700 " onClick={clearCart}><IoTrashBinSharp /></button>
               </div>
 
               {/* Cart Item */}
@@ -171,7 +174,7 @@ const ShoppingCart = () => {
                               {/* Price */}
                               <div className="text-right">
                                 <p className="text-lg font-bold text-gray-900 dark:text-white">
-                                  {item.price * item.quantity}
+                                  {itemPrice(item).toFixed(2)}
                                 </p>
                               </div>
                             </div>
@@ -201,7 +204,7 @@ const ShoppingCart = () => {
                       Total
                     </span>
                     <span className="text-lg font-bold text-green-500 dark:text-green-500">
-                      ₹ 0
+                      ₹{totalPrice().toFixed(2)}
                     </span>
                   </div>
                 </div>

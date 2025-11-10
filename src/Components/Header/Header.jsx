@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import useCartContext from "../../hooks/useCartContext";
 
 const Header = () => {
+
+ const { totalCountCartItems }= useCartContext()
   return (
     <>
       <div className="2xl:container mx-auto  bg-white shadow-xl ">
@@ -23,7 +26,7 @@ const Header = () => {
             <Link to="shoppingcart">
               {" "}
               <p className="border px-2 py-1 rounded bg-black text-white font-[poppins] cursor-pointer hover:bg-zinc-200 hover:text-black">
-                <span className="text-red-600 mr-1">0</span>cart
+                <span className="text-red-600 mr-1">{totalCountCartItems()}</span>cart
               </p>
             </Link>
           </div>
