@@ -26,7 +26,7 @@ const ProductDetails = () => {
               <img className="w-full dark:hidden" src={data.image} alt="" />
               <img
                 className="w-full hidden dark:block"
-                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+                src={data.image}
                 alt=""
               />
             </div>

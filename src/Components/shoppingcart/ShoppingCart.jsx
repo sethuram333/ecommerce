@@ -1,12 +1,47 @@
 import useCartContext from "../../hooks/useCartContext";
 import { Link } from "react-router-dom";
 import { IoTrashBinSharp } from "react-icons/io5";
+import { TbCircleNumber1 } from "react-icons/tb";
+import { TbCircleNumber2 } from "react-icons/tb";
+import { TbCircleNumber3 } from "react-icons/tb";
+
 const ShoppingCart = () => {
-  const { cartItems, removeFromCart, updateQuantity, itemPrice, totalPrice,clearCart } =
-    useCartContext();
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    itemPrice,
+    totalPrice,
+    clearCart,
+  } = useCartContext();
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+      {/* status */}
+      <div className="w-[90%] mx-auto flex flex-row justify-center items-center p-10 md:gap-4  mb-10 shadow">
+        <div className="flex flex-col justify-center items-center">
+          <TbCircleNumber1 className="text-5xl" />
+          <p>Cart</p>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <p className="border px-10"></p>
+        </div>
+
+        <div className="flex flex-col justify-center items-center">
+          <TbCircleNumber2 className="text-5xl" />
+          <p>Checkout</p>
+        </div>
+        <div className="flex justify-center items-center">
+          <p className="border px-10"></p>
+        </div>
+
+        <div className="flex flex-col justify-center items-center">
+          <TbCircleNumber3 className="text-5xl" />
+          <p>order</p>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Shopping Cart Items - Takes 2/3 on large screens */}
@@ -16,7 +51,12 @@ const ShoppingCart = () => {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                   Shopping Cart
                 </h2>
-                <button className="bg-red-500 px-2 py-1 text-2xl rounded-full w-10 h-10  flex justify-center items-center hover:bg-red-700 " onClick={clearCart}><IoTrashBinSharp /></button>
+                <button
+                  className="bg-red-500 px-2 py-1 text-2xl rounded-full w-10 h-10  flex justify-center items-center hover:bg-red-700 "
+                  onClick={clearCart}
+                >
+                  <IoTrashBinSharp />
+                </button>
               </div>
 
               {/* Cart Item */}
@@ -210,9 +250,13 @@ const ShoppingCart = () => {
                 </div>
 
                 <div className="mt-6 space-y-4">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200">
-                    Proceed to Checkout
-                  </button>
+                  <Link to="/checkout">
+                    <div className="flex justify-center items-center">
+                      <p className=" bg-blue-500 py-2 px-5 rounded hover:bg-blue-700">
+                        Proceed to checkout
+                      </p>
+                    </div>
+                  </Link>
 
                   <div className="text-center">
                     <span className="text-sm text-gray-500 dark:text-gray-400 mr-2">
